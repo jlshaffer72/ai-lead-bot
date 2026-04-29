@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Lead Bot Demo</title>
+  <style>
+    body { font-family: Arial; background:#f5f5f5; margin:0; }
+    .box { max-width:600px; margin:40px auto; background:white; padding:20px; border-radius:10px; }
+    #chat { height:300px; overflow:auto; border:1px solid #ddd; padding:10px; }
+    .user { text-align:right; color:blue; margin:10px 0; }
+    .bot { text-align:left; color:green; margin:10px 0; }
+    input { width:75%; padding:10px; }
+    button { padding:10px; }
+  </style>
+</head>
+<body>
 
+<div class="box">
+  <h2>AI Lead Bot Demo</h2>
+
+  <div id="chat">
+    <div class="bot">Hi 👋 How can I help you today?</div>
+  </div>
+
+  <input id="input" placeholder="Type message..." />
+  <button onclick="send()">Send</button>
+</div>
+
+<script>
+function send() {
+  const input = document.getElementById("input");
+  const chat = document.getElementById("chat");
+
+  const msg = input.value;
+  if (!msg) return;
+
+  chat.innerHTML += "<div class='user'>" + msg + "</div>";
+
+  let reply = "";
+
+  if (msg.toLowerCase().includes("ac") || msg.toLowerCase().includes("hvac")) {
+    reply = "Got it 👍 Is this urgent or just a quote?";
+  } else if (msg.toLowerCase().includes("urgent")) {
+    reply = "⚡ Sounds urgent. What’s your zip code?";
+  } else {
+    reply = "Thanks — we’ll follow up shortly. What’s your phone number?";
+  }
+
+  setTimeout(() => {
+    chat.innerHTML += "<div class='bot'>" + reply + "</div>";
+  }, 500);
+
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
